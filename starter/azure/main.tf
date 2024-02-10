@@ -31,8 +31,7 @@ resource "azurerm_container_group" "udacity" {
 
 ####### Your Additions Will Start Here ######
 
-
-resource "azurerm_sql_server" "udacity_sql_server" {
+resource "azurerm_mssql_server" "udacity_mssql_server" {
   name                         = "udacity-harshit-azure-sql"
   resource_group_name          = data.azurerm_resource_group.udacity.name
   location                     = data.azurerm_resource_group.udacity.location
@@ -49,7 +48,7 @@ resource "azurerm_sql_database" "udacity_sql_db" {
   name                = "udacity-harshit-azure-sql"
   resource_group_name = data.azurerm_resource_group.udacity.name
   location            = data.azurerm_resource_group.udacity.location
-  server_name         = azurerm_sql_server.udacity_sql_server.name
+  server_name         = azurerm_mssql_server.udacity_mssql_server.name
 
   tags = {
     environment = "udacity"
@@ -90,7 +89,7 @@ resource "azurerm_app_service" "udacity_app_service" {
 
   app_settings = {
     "DOTNET_ENVIRONMENT" = "Production"
-    "SQL_SERVER_URL"     = azurerm_sql_server.udacity_sql_server.fully_qualified_domain_name
+    "SQL_SERVER_URL"     = azurerm_mssql_server.udacity_mssql_server.fully_qualified_domain_name
   }
 
   tags = {

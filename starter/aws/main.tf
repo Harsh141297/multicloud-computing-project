@@ -42,7 +42,7 @@ resource "aws_route" "internet_access" {
 
 resource "aws_eip" "gateway" {
   count      = 2
-  domain     = "vpc"
+  domain      = "vpc"
   depends_on = [aws_internet_gateway.gateway]
 }
 
@@ -225,9 +225,7 @@ resource "aws_dynamodb_table" "dynamodb" {
     type = "S"
   }
 
-  replica {
-    region_name = "us-east-2"
-  }
+  // Removed the replica block for us-east-2 as it's the local region
 
   replica {
     region_name = "us-west-2"

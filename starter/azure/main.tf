@@ -69,19 +69,18 @@ resource "azurerm_service_plan" "udacity_app_service_plan" {
   name                = "udacity-harshit-azure-dotnet-app"
   resource_group_name = data.azurerm_resource_group.udacity.name
   location            = data.azurerm_resource_group.udacity.location
-  os_type             = "Linux"
+  os_type             = "Windows"
   sku_name            = "P1v2"
 }
 
-resource "azurerm_app_service" "udacity_app_service" {
-  name                = "udacity-harshit-azure-dotnet-app"
-  location            = data.azurerm_resource_group.udacity.location
-  resource_group_name = data.azurerm_resource_group.udacity.name
-  app_service_plan_id = azurerm_service_plan.udacity_app_service_plan.id
 
-  site_config {
-    dotnet_framework_version = "v4.0"
-  }
+resource "azurerm_windows_web_app" "udacity_app_service" {
+  name                = "udacity-harshit-azure-dotnet-app"
+  resource_group_name = data.azurerm_resource_group.udacity.name
+  location            = data.azurerm_resource_group.udacity.location
+  service_plan_id     = azurerm_service_plan.udacity_app_service_plan.id
+
+  site_config {}
 
   app_settings = {
     "DOTNET_ENVIRONMENT" = "Production"
@@ -92,3 +91,4 @@ resource "azurerm_app_service" "udacity_app_service" {
     environment = "udacity"
   }
 }
+

@@ -44,12 +44,17 @@ resource "azurerm_mssql_server" "udacity_mssql_server" {
   }
 }
 
-resource "azurerm_sql_database" "udacity_sql_db" {
-  name                = "udacity-harshit-azure-sql"
-  resource_group_name = data.azurerm_resource_group.udacity.name
-  location            = data.azurerm_resource_group.udacity.location
-  server_name         = azurerm_mssql_server.udacity_mssql_server.name
 
+resource "azurerm_mssql_database" "udacity_sql_db" {
+  name           = "udacity-harshit-azure-sql"
+  server_id      = azurerm_mssql_server.udacity_mssql_server.id
+  collation      = "SQL_Latin1_General_CP1_CI_AS"
+  license_type   = "LicenseIncluded"
+  max_size_gb    = 4
+  read_scale     = true
+  sku_name       = "S0"
+  zone_redundant = true
+  enclave_type   = "VBS"
   tags = {
     environment = "udacity"
   }

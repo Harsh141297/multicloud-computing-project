@@ -54,7 +54,6 @@ resource "azurerm_mssql_database" "udacity_sql_db" {
   read_scale     = true
   sku_name       = "S0"
   zone_redundant = true
-  enclave_type   = "VBS"
   tags = {
     environment = "udacity"
   }

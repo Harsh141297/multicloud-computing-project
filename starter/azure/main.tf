@@ -46,18 +46,18 @@ resource "azurerm_mssql_server" "udacity_mssql_server" {
 
 
 resource "azurerm_mssql_database" "udacity_sql_db" {
-  name           = "udacity-harshit-azure-sql"
-  server_id      = azurerm_mssql_server.udacity_mssql_server.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  max_size_gb    = 4
-  read_scale     = true
-  sku_name       = "S0"
-  zone_redundant = true
+  name                = "udacity-harshit-azure-sql-db"
+  server_id           = azurerm_mssql_server.udacity_mssql_server.id
+
+  sku_name = "S0" # Example: Standard tier, S0 performance level
+  # Make sure to select a max_size_gb value supported by the chosen sku_name
+  max_size_gb         = 2 # Example adjustment, choose based on tier limits
+
   tags = {
     environment = "udacity"
   }
 }
+
 
 resource "random_string" "udacity_suffix" {
   length  = 8

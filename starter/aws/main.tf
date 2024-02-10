@@ -42,7 +42,7 @@ resource "aws_route" "internet_access" {
 
 resource "aws_eip" "gateway" {
   count      = 2
-  vpc        = true
+  domain     = "vpc"
   depends_on = [aws_internet_gateway.gateway]
 }
 

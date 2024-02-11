@@ -23,7 +23,7 @@ AWS S3 is the native choice here due to its comprehensive S3 API support and mat
 Requirements:
 - Global availability
 - Highly scalable pricing
-For applications requiring a highly scalable, globally available NoSQL database within the AWS ecosystem, Amazon DynamoDB is an excellent choice.
+When selecting a NoSQL database provider, AWS DynamoDB was chosen for its scalability, availability, and cost-effectiveness. DynamoDB offers fully managed, multi-region, durable database services with built-in security and in-memory caching. Its pricing model is advantageous for our use case, offering a pay-per-use structure that scales with our application's needs, reducing upfront costs. The ability to handle large-scale, high-traffic applications without the need for manual intervention in scaling operations significantly contributes to operational efficiency. Additionally, AWS's global infrastructure ensures high availability and data durability, crucial for maintaining an optimal user experience and data integrity. Comparatively, while Azure Cosmos DB is a strong competitor with similar features, DynamoDB's seamless integration with other AWS services and its more favorable pricing for our expected usage patterns solidified our choice.
 
 ## Web App
 Requirements:
